@@ -1307,6 +1307,7 @@ class AudioPlayer {
               : IcyMetadata._fromMessage(message.icyMetadata!),
           currentIndex: index,
           androidAudioSessionId: message.androidAudioSessionId,
+          startTimeUs: message.startTimeUs,
         );
         _durationFuture = Future.value(playbackEvent.duration);
         if (playbackEvent == _playbackEvent) {
@@ -1536,6 +1537,10 @@ class PlaybackEvent {
   /// The current Android AudioSession ID if set.
   final int? androidAudioSessionId;
 
+  // added by nori -------------------------------------------------
+  final long? startTimeUs;
+  //----------------------------------------------------------------
+
   PlaybackEvent({
     this.processingState = ProcessingState.idle,
     DateTime? updateTime,
@@ -1545,6 +1550,7 @@ class PlaybackEvent {
     this.icyMetadata,
     this.currentIndex,
     this.androidAudioSessionId,
+    this.startTimeUs,
   }) : updateTime = updateTime ?? DateTime.now();
 
   /// Returns a copy of this event with given properties replaced.
@@ -1557,6 +1563,7 @@ class PlaybackEvent {
     IcyMetadata? icyMetadata,
     int? currentIndex,
     int? androidAudioSessionId,
+    long? startTimeUs,
   }) =>
       PlaybackEvent(
         processingState: processingState ?? this.processingState,
@@ -1568,6 +1575,7 @@ class PlaybackEvent {
         currentIndex: currentIndex ?? this.currentIndex,
         androidAudioSessionId:
             androidAudioSessionId ?? this.androidAudioSessionId,
+        startTimeUs: startTimeUs ?? this.startTimeUs,
       );
 
   @override
@@ -1580,6 +1588,7 @@ class PlaybackEvent {
         icyMetadata,
         currentIndex,
         androidAudioSessionId,
+        startTimeUs,
       );
 
   @override
@@ -1594,10 +1603,11 @@ class PlaybackEvent {
       icyMetadata == other.icyMetadata &&
       currentIndex == other.currentIndex &&
       androidAudioSessionId == other.androidAudioSessionId;
+      startTimeUs == other.startTimeUs;
 
   @override
   String toString() =>
-      "{processingState=$processingState, updateTime=$updateTime, updatePosition=$updatePosition, bufferedPosition=$bufferedPosition, duration=$duration, currentIndex=$currentIndex}";
+      "{processingState=$processingState, updateTime=$updateTime, updatePosition=$updatePosition, bufferedPosition=$bufferedPosition, duration=$duration, currentIndex=$currentIndex, starttimeus=$startTimeUs}";
 }
 
 /// Enumerates the different processing states of a player.
