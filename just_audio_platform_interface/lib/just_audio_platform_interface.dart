@@ -275,6 +275,10 @@ class PlaybackEventMessage {
   final int? currentIndex;
   final int? androidAudioSessionId;
 
+  // added by nori -------------------------------------------------
+  final double? startTimeUs;
+  //----------------------------------------------------------------
+
   PlaybackEventMessage({
     required this.processingState,
     required this.updateTime,
@@ -284,6 +288,7 @@ class PlaybackEventMessage {
     required this.icyMetadata,
     required this.currentIndex,
     required this.androidAudioSessionId,
+    required this.startTimeUs,
   });
 
   static PlaybackEventMessage fromMap(Map<dynamic, dynamic> map) =>
@@ -304,6 +309,9 @@ class PlaybackEventMessage {
                 map['icyMetadata'] as Map<dynamic, dynamic>),
         currentIndex: map['currentIndex'] as int?,
         androidAudioSessionId: map['androidAudioSessionId'] as int?,
+        startTimeUs: map['startTimeUs'] == null || map['startTimeUs'] as double < 0
+            ? null
+            : Duration(microseconds: map['startTimeUs'] as double),
       );
 }
 
