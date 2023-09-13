@@ -3409,6 +3409,7 @@ class _IdleAudioPlayer extends AudioPlayerPlatform {
       duration: _getDurationAtIndex(_index),
       currentIndex: _index,
       androidAudioSessionId: null,
+        startTimeUs: null,
     ));
   }
 
