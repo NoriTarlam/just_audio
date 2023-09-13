@@ -1538,7 +1538,7 @@ class PlaybackEvent {
   final int? androidAudioSessionId;
 
   // added by nori -------------------------------------------------
-  final long? startTimeUs;
+  final double? startTimeUs;
   //----------------------------------------------------------------
 
   PlaybackEvent({
@@ -1563,7 +1563,7 @@ class PlaybackEvent {
     IcyMetadata? icyMetadata,
     int? currentIndex,
     int? androidAudioSessionId,
-    long? startTimeUs,
+    double? startTimeUs,
   }) =>
       PlaybackEvent(
         processingState: processingState ?? this.processingState,
