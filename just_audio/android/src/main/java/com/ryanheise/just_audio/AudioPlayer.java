@@ -254,14 +254,19 @@ public class AudioPlayer implements MethodCallHandler, Player.Listener, Metadata
     }
 
     private void updatePosition() {
+        updatePosition = getCurrentPosition();
 
         // added by nori -------------------------------------------------
         System.out.println("updatePosition");
         long startTimeUS = getStartTimeUs();
-        System.out.println(startTimeUS);
+        if(startTimeUS != C.TIME_UNSET) {
+            System.out.println(startTimeUS);
+        } else {
+            System.out.println("C.TIME_UNSET");
+        }
+
         //----------------------------------------------------------------
 
-        updatePosition = getCurrentPosition();
         updateTime = System.currentTimeMillis();
     }
 
