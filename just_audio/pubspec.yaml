@@ -22,9 +22,14 @@ dependencies:
       url: https://github.com/NoriTarlam/just_audio.git
       path: just_audio_platform_interface
       ref: minor
-  just_audio_web: ^0.4.8
+  #just_audio_web: ^0.4.8
   # just_audio_web:
   #   path: ../just_audio_web
+  just_audio_web:
+    git:
+      url: https://github.com/NoriTarlam/just_audio.git
+      path: just_audio_web
+      ref: minor
   audio_session: ^0.1.14
   rxdart: '>=0.26.0 <0.28.0'
   path: ^1.8.0
