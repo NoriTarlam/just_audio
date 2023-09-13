@@ -257,7 +257,7 @@ public class AudioPlayer implements MethodCallHandler, Player.Listener, Metadata
         updatePosition = getCurrentPosition();
 
         // added by nori -------------------------------------------------
-        System.out.println("updatePosition");
+        System.out.println("updatePosition()");
         long startTimeUS = getStartTimeUs();
         if(startTimeUS != C.TIME_UNSET) {
             System.out.println(startTimeUS);
