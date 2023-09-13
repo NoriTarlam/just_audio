@@ -1602,7 +1602,7 @@ class PlaybackEvent {
       duration == other.duration &&
       icyMetadata == other.icyMetadata &&
       currentIndex == other.currentIndex &&
-      androidAudioSessionId == other.androidAudioSessionId;
+      androidAudioSessionId == other.androidAudioSessionId &&
       startTimeUs == other.startTimeUs;
 
   @override
