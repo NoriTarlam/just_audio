@@ -62,6 +62,12 @@ import java.util.List;
 import java.util.Map;
 import java.util.Random;
 
+// Add by Nori
+//------------------------------------------------
+import com.google.android.exoplayer2.source.hls.playlist.HlsMediaPlaylist;
+import com.google.android.exoplayer2.source.hls.HlsManifest;
+//------------------------------------------------
+
 public class AudioPlayer implements MethodCallHandler, Player.Listener, MetadataOutput {
 
     static final String TAG = "AudioPlayer";
@@ -795,6 +801,12 @@ public class AudioPlayer implements MethodCallHandler, Player.Listener, Metadata
         final Map<String, Object> event = new HashMap<String, Object>();
         Long duration = getDuration() == C.TIME_UNSET ? null : (1000 * getDuration());
         bufferedPosition = player != null ? player.getBufferedPosition() : 0L;
+
+        // added by nori -------------------------------------------------
+        Long startTimeUs = getStartTimeUs() == C.TIME_UNSET ? null : getStartTimeUs();
+        //----------------------------------------------------------------
+
+
         event.put("processingState", processingState.ordinal());
         event.put("updatePosition", 1000 * updatePosition);
         event.put("updateTime", updateTime);
@@ -803,6 +815,11 @@ public class AudioPlayer implements MethodCallHandler, Player.Listener, Metadata
         event.put("duration", duration);
         event.put("currentIndex", currentIndex);
         event.put("androidAudioSessionId", audioSessionId);
+
+        // added by nori -------------------------------------------------
+        event.put("startTimeUs", startTimeUs);
+        //----------------------------------------------------------------
+
         return event;
     }
 
@@ -877,6 +894,28 @@ public class AudioPlayer implements MethodCallHandler, Player.Listener, Metadata
             return player.getDuration();
         }
     }
+
+    // added by nori -------------------------------------------------
+    private long getStartTimeUs() {
+        if (processingState == ProcessingState.none || processingState == ProcessingState.loading) {
+            return C.TIME_UNSET;
+        } else {
+            System.out.println("getCurrentManifest");
+            Object manifest = player.getCurrentManifest();
+            if(manifest != null) {
+                HlsManifest hlsManifest = (HlsManifest) manifest;
+                if(hlsManifest.mediaPlaylist != null) {
+                    HlsMediaPlaylist mediaPlaylist = hlsManifest.mediaPlaylist;
+                    if(mediaPlaylist.hasProgramDateTime != false) {
+                        return mediaPlaylist.startTimeUs;
+                    }
+                }
+            }
+
+        }
+        return C.TIME_UNSET;
+    }
+    //---------------------------------------------------------------
 
     private void sendError(String errorCode, String errorMsg) {
         if (prepareResult != null) {
