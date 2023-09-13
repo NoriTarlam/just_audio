@@ -247,21 +247,6 @@ public class AudioPlayer implements MethodCallHandler, Player.Listener, Metadata
     }
 
     private boolean updatePositionIfChanged() {
-
-        // added by nori -------------------------------------------------
-        System.out.println("updatePosition()");
-        long startTimeUS = getStartTimeUs();
-        if(startTimeUS != C.TIME_UNSET) {
-            System.out.println("startTimeUS");
-            System.out.println(startTimeUS);
-        } else {
-            System.out.println("C.TIME_UNSET");
-        }
-        //----------------------------------------------------------------
-
-
-
-
         if (getCurrentPosition() == updatePosition) return false;
         updatePosition = getCurrentPosition();
         updateTime = System.currentTimeMillis();
