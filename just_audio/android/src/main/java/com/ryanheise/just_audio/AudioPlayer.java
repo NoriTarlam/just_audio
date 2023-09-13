@@ -260,6 +260,7 @@ public class AudioPlayer implements MethodCallHandler, Player.Listener, Metadata
         System.out.println("updatePosition()");
         long startTimeUS = getStartTimeUs();
         if(startTimeUS != C.TIME_UNSET) {
+            System.out.println("startTimeUS");
             System.out.println(startTimeUS);
         } else {
             System.out.println("C.TIME_UNSET");
