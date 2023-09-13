@@ -921,8 +921,6 @@ public class AudioPlayer implements MethodCallHandler, Player.Listener, Metadata
                 HlsManifest hlsManifest = (HlsManifest) manifest;
                 if(hlsManifest.mediaPlaylist != null) {
                     HlsMediaPlaylist mediaPlaylist = hlsManifest.mediaPlaylist;
-                    System.out.println("mediaPlaylist.startOffsetUs");
-                    System.out.println(mediaPlaylist.startOffsetUs);
                     if(mediaPlaylist.hasProgramDateTime != false) {
                         return mediaPlaylist.startTimeUs;
                     }
