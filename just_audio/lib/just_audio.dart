@@ -1538,7 +1538,7 @@ class PlaybackEvent {
   final int? androidAudioSessionId;
 
   // added by nori -------------------------------------------------
-  final double? startTimeUs;
+  final int? startTimeUs;
   //----------------------------------------------------------------
 
   PlaybackEvent({
@@ -1563,7 +1563,7 @@ class PlaybackEvent {
     IcyMetadata? icyMetadata,
     int? currentIndex,
     int? androidAudioSessionId,
-    double? startTimeUs,
+    int? startTimeUs,
   }) =>
       PlaybackEvent(
         processingState: processingState ?? this.processingState,
@@ -3409,7 +3409,7 @@ class _IdleAudioPlayer extends AudioPlayerPlatform {
       duration: _getDurationAtIndex(_index),
       currentIndex: _index,
       androidAudioSessionId: null,
-        startTimeUs: null,
+      startTimeUs: null,
     ));
   }
 

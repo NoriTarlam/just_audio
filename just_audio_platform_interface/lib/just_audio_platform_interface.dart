@@ -276,7 +276,7 @@ class PlaybackEventMessage {
   final int? androidAudioSessionId;
 
   // added by nori -------------------------------------------------
-  final double? startTimeUs;
+  final int? startTimeUs;
   //----------------------------------------------------------------
 
   PlaybackEventMessage({
@@ -309,7 +309,7 @@ class PlaybackEventMessage {
                 map['icyMetadata'] as Map<dynamic, dynamic>),
         currentIndex: map['currentIndex'] as int?,
         androidAudioSessionId: map['androidAudioSessionId'] as int?,
-        startTimeUs: map['startTimeUs'] as double?,
+        startTimeUs: map['startTimeUs'] as int?,
       );
 }
 
