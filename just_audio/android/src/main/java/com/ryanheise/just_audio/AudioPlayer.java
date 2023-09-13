@@ -247,14 +247,6 @@ public class AudioPlayer implements MethodCallHandler, Player.Listener, Metadata
     }
 
     private boolean updatePositionIfChanged() {
-        if (getCurrentPosition() == updatePosition) return false;
-        updatePosition = getCurrentPosition();
-        updateTime = System.currentTimeMillis();
-        return true;
-    }
-
-    private void updatePosition() {
-        updatePosition = getCurrentPosition();
 
         // added by nori -------------------------------------------------
         System.out.println("updatePosition()");
@@ -265,9 +257,19 @@ public class AudioPlayer implements MethodCallHandler, Player.Listener, Metadata
         } else {
             System.out.println("C.TIME_UNSET");
         }
-
         //----------------------------------------------------------------
 
+
+
+
+        if (getCurrentPosition() == updatePosition) return false;
+        updatePosition = getCurrentPosition();
+        updateTime = System.currentTimeMillis();
+        return true;
+    }
+
+    private void updatePosition() {
+        updatePosition = getCurrentPosition();
         updateTime = System.currentTimeMillis();
     }
 
@@ -919,6 +921,8 @@ public class AudioPlayer implements MethodCallHandler, Player.Listener, Metadata
                 HlsManifest hlsManifest = (HlsManifest) manifest;
                 if(hlsManifest.mediaPlaylist != null) {
                     HlsMediaPlaylist mediaPlaylist = hlsManifest.mediaPlaylist;
+                    System.out.println("mediaPlaylist.startOffsetUs");
+                    System.out.println(mediaPlaylist.startOffsetUs);
                     if(mediaPlaylist.hasProgramDateTime != false) {
                         return mediaPlaylist.startTimeUs;
                     }
