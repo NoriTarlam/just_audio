@@ -900,7 +900,7 @@ public class AudioPlayer implements MethodCallHandler, Player.Listener, Metadata
         if (processingState == ProcessingState.none || processingState == ProcessingState.loading) {
             return C.TIME_UNSET;
         } else {
-            System.out.println("getCurrentManifest");
+            //System.out.println("getCurrentManifest");
             Object manifest = player.getCurrentManifest();
             if(manifest != null) {
                 HlsManifest hlsManifest = (HlsManifest) manifest;
